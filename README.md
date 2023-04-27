@@ -138,13 +138,21 @@ R-squared score: 0.86
 
 # PLOTTING THE RESULTS
 test["prediction"]=xgbrPredic
+
 df=df.set_index("Date")
+
 ax=df['AvgTemperature'][(df['City'] ==city["London"])].plot(figsize=(15,5))
+
 df["prediction"][(df['City'] ==city["London"])].plot(ax=ax,style=".")
+
 plt.legend(["Real Data","Predictions"])
+
 ax.set_title("Daily Average Temperature in London")
+
 plt.xlabel("Date")
+
 plt.ylabel("Average Temperature")
+
 plt.show()
 
 ![image](https://user-images.githubusercontent.com/93997961/234982504-9065b73e-4459-49e5-9c2f-7fd3a67cddd9.png)
