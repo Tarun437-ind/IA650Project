@@ -94,6 +94,25 @@ df.sort_values(by = ['AvgTemperature'], ascending  = True).head(1)
 ![image](https://user-images.githubusercontent.com/93997961/234976740-7c61e3dd-4284-4d0b-b363-d90becd4a046.png)
 
 
+# plotting the temperature of every city in a country
+So we have taken United Kingdom as an example
+
+![image](https://user-images.githubusercontent.com/93997961/234977986-eb01c985-18d5-4517-b8f2-7163b04afa86.png)
+
+# Using Label Encoder (Transform non-numerical Data to numerical)
+le=LabelEncoder()
+
+df["Region"]=le.fit_transform(df["Region"])
+region = dict(zip(le.classes_, range(len(le.classes_))))
+df["Country"]=le.fit_transform(df["Country"])
+country = dict(zip(le.classes_, range(len(le.classes_))))
+df["State"]=le.fit_transform(df["State"])
+state = dict(zip(le.classes_, range(len(le.classes_))))
+df["City"]=le.fit_transform(df["City"])
+city = dict(zip(le.classes_, range(len(le.classes_))))
+
+
+
 
 
 
