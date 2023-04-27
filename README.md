@@ -54,41 +54,42 @@ OUTPUT :
 
 ![image](https://user-images.githubusercontent.com/93997961/234972279-5cc2d420-931b-42f5-b8a0-33e9be2c1554.png)
 
-# Removing the rows that contains 200 and 201 in the year and contains 0 in the day
+#### Removing the rows that contains 200 and 201 in the year and contains 0 in the day
 df =df[ (df['Year'] != 200) & (df['Year'] != 201) & (df['Day'] != 0) ]
 
-# Transform the Average Temperature from Fahrenheit to Celsius
+#### Transform the Average Temperature from Fahrenheit to Celsius
 df["AvgTemperature"]=(df["AvgTemperature"]-32)*(5/9)
 
 # Add a datetime column to use it in plotting
 df['Date'] = pd.to_datetime(df[['Year','Month','Day']])
 
-#  Remove values that are less than -50 and year equal or greater than 2020 since there exists some random drops in it
+####  Remove values that are less than -50 and year equal or greater than 2020 since there exists some random drops in it
 df =df[(df['AvgTemperature'] >= -50) & (df['Year'] < 2020)]
 
 # PLOTTING THE DATASET
-# PLOTTING BY REGION
+
+### PLOTTING BY REGION
 
 
 ![image](https://user-images.githubusercontent.com/93997961/234974857-2328df5d-904b-40e4-93be-698a5c8f659b.png)
 
-# The hottest Average Temperature in the Dataset
+## The hottest Average Temperature in the Dataset
 df.sort_values(by = ['AvgTemperature'], ascending  = False).head(1)
 
 
 ![image](https://user-images.githubusercontent.com/93997961/234975164-e814f627-501f-4a1b-a36e-0d1602bed2a2.png)
 
-# The coldest Average Temperature in the Dataset
+## The coldest Average Temperature in the Dataset
 df.sort_values(by = ['AvgTemperature'], ascending  = True).head(1)
 
 ![image](https://user-images.githubusercontent.com/93997961/234975481-43ceaa66-d431-468d-8f3f-91a2ef7823ff.png)
 
 
-# PLOTTING SOME CITIES
+## PLOTTING SOME CITIES
 
 ![image](https://user-images.githubusercontent.com/93997961/234975668-fcd8951f-6c21-4906-a1ec-cfa80d51ec64.png)
 
-# plotting the temperature of every country in a region
+### plotting the temperature of every country in a region
 
 
 ![image](https://user-images.githubusercontent.com/93997961/234976740-7c61e3dd-4284-4d0b-b363-d90becd4a046.png)
@@ -99,7 +100,7 @@ So we have taken United Kingdom as an example
 
 ![image](https://user-images.githubusercontent.com/93997961/234977986-eb01c985-18d5-4517-b8f2-7163b04afa86.png)
 
-# Using Label Encoder (Transform non-numerical Data to numerical)
+### Using Label Encoder (Transform non-numerical Data to numerical)
 le=LabelEncoder()
 
 df["Region"]=le.fit_transform(df["Region"])
@@ -131,7 +132,7 @@ test=df[split:]
 
 ![image](https://user-images.githubusercontent.com/93997961/234979401-48a3699f-f52f-4f77-bda8-c7adf054b6df.png)
 
-##  USING XGBOOST MODEL
+## USING XGBOOST MODEL
 xgbr=xgb.XGBRegressor(booster="dart",objective="reg:squarederror",n_estimators=151)
 
 xgbr.fit(X_train,y_train)
@@ -139,12 +140,13 @@ xgbr.fit(X_train,y_train)
 xgbrPredic=xgbr.predict(X_test)
 
 ## EVALUATING MODEL RESULTS AND ACCURACY  
+
 RMSE
 print("Root Mean Squared Error (RMSE) score XGBoost:"+str(np.sqrt(mean_squared_error(y_test,xgbrPredic))))
 
 Root Mean Squared Error (RMSE) score XGBoost:3.8601992844359025
 
-## FROM THE BELOW RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
+### FROM THE BELOW RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
 R^2: 
 r2 = r2_score(y_test, xgbrPredic)
 
@@ -153,6 +155,7 @@ print("R-squared score: {:.2f}".format(r2))
 R-squared score: 0.86
 
 # PLOTTING THE RESULTS
+
 test["prediction"]=xgbrPredic
 
 df=df.set_index("Date")
@@ -173,7 +176,8 @@ plt.show()
 
 ![image](https://user-images.githubusercontent.com/93997961/234982504-9065b73e-4459-49e5-9c2f-7fd3a67cddd9.png)
 
-# USING GRADIENT BOOSTING MODEL 
+## USING GRADIENT BOOSTING MODEL 
+
 gbm = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
 
 gbm.fit(X_train, y_train)
@@ -181,13 +185,14 @@ gbm.fit(X_train, y_train)
 y_pred = gbm.predict(X_test)
 
 ## EVALUATING MODEL RESULTS AND ACCURACY 
+
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 
 print("RMSE:", rmse)
 
 RMSE: 5.841273980934234
 
-## FROM THE BELOW RESULTS WE GOT NEARLY 70% ACCURACY FOR THIS MODEL
+### FROM THE BELOW RESULTS WE GOT NEARLY 70% ACCURACY FOR THIS MODEL
 
 r2 = r2_score(y_test,y_pred)
 
