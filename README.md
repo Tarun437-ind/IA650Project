@@ -32,4 +32,5 @@ from sklearn.metrics import r2_score
 df=pd.read_csv("city_temperature.csv")
 df
 OUTPUT :
+
 ![image](https://user-images.githubusercontent.com/93997961/234970304-776fd02f-b452-4228-a8f8-27b67ea92306.png)
