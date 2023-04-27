@@ -101,7 +101,6 @@ So we have taken United Kingdom as an example
 
 # Using Label Encoder (Transform non-numerical Data to numerical)
 le=LabelEncoder()
-
 df["Region"]=le.fit_transform(df["Region"])
 region = dict(zip(le.classes_, range(len(le.classes_))))
 df["Country"]=le.fit_transform(df["Country"])
@@ -110,6 +109,22 @@ df["State"]=le.fit_transform(df["State"])
 state = dict(zip(le.classes_, range(len(le.classes_))))
 df["City"]=le.fit_transform(df["City"])
 city = dict(zip(le.classes_, range(len(le.classes_))))
+
+![image](https://user-images.githubusercontent.com/93997961/234978562-d2884f74-0e5c-4891-81c9-1d59f83f4827.png)
+
+# SPLTTING THE DATA INTO TRAIN AND TEST 
+80% train and 20% test
+split=2491106
+train=df[:split]
+test=df[split:]
+
+![image](https://user-images.githubusercontent.com/93997961/234979401-48a3699f-f52f-4f77-bda8-c7adf054b6df.png)
+
+# USING XGBOOST 
+
+![image](https://user-images.githubusercontent.com/93997961/234979998-a1ea979a-0237-432f-9dfe-f8447d0a441e.png)
+
+## BY USING 
 
 
 
