@@ -101,39 +101,55 @@ So we have taken United Kingdom as an example
 
 # Using Label Encoder (Transform non-numerical Data to numerical)
 le=LabelEncoder()
+
 df["Region"]=le.fit_transform(df["Region"])
+
 region = dict(zip(le.classes_, range(len(le.classes_))))
+
 df["Country"]=le.fit_transform(df["Country"])
+
 country = dict(zip(le.classes_, range(len(le.classes_))))
+
 df["State"]=le.fit_transform(df["State"])
+
 state = dict(zip(le.classes_, range(len(le.classes_))))
+
 df["City"]=le.fit_transform(df["City"])
+
 city = dict(zip(le.classes_, range(len(le.classes_))))
 
 ![image](https://user-images.githubusercontent.com/93997961/234978562-d2884f74-0e5c-4891-81c9-1d59f83f4827.png)
 
 # SPLTTING THE DATA INTO TRAIN AND TEST 
 80% train and 20% test
+
 split=2491106
+
 train=df[:split]
+
 test=df[split:]
 
 ![image](https://user-images.githubusercontent.com/93997961/234979401-48a3699f-f52f-4f77-bda8-c7adf054b6df.png)
 
 ##  USING XGBOOST MODEL
 xgbr=xgb.XGBRegressor(booster="dart",objective="reg:squarederror",n_estimators=151)
+
 xgbr.fit(X_train,y_train)
+
 xgbrPredic=xgbr.predict(X_test)
 
 ## EVALUATING MODEL RESULTS AND ACCURACY  
 RMSE
 print("Root Mean Squared Error (RMSE) score XGBoost:"+str(np.sqrt(mean_squared_error(y_test,xgbrPredic))))
+
 Root Mean Squared Error (RMSE) score XGBoost:3.8601992844359025
 
-## FROM THE ABOVE RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
+## FROM THE BELOW RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
 R^2: 
 r2 = r2_score(y_test, xgbrPredic)
+
 print("R-squared score: {:.2f}".format(r2))
+
 R-squared score: 0.86
 
 # PLOTTING THE RESULTS
@@ -156,6 +172,32 @@ plt.ylabel("Average Temperature")
 plt.show()
 
 ![image](https://user-images.githubusercontent.com/93997961/234982504-9065b73e-4459-49e5-9c2f-7fd3a67cddd9.png)
+
+# USING GRADIENT BOOSTING MODEL 
+gbm = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+
+gbm.fit(X_train, y_train)
+
+y_pred = gbm.predict(X_test)
+
+## EVALUATING MODEL RESULTS AND ACCURACY 
+rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+
+print("RMSE:", rmse)
+
+RMSE: 5.841273980934234
+
+## FROM THE BELOW RESULTS WE GOT NEARLY 70% ACCURACY FOR THIS MODEL
+
+r2 = r2_score(y_test,y_pred)
+
+print("R-squared score: {:.2f}".format(r2))
+
+R-squared score: 0.69
+
+
+
+
 
 
 
