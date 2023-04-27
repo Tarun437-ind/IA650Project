@@ -1,2 +1,3 @@
 # IA650Project
-Machine Learning Final project
+#Prediction Of temperature around the Globe
+
