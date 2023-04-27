@@ -68,13 +68,7 @@ df =df[(df['AvgTemperature'] >= -50) & (df['Year'] < 2020)]
 
 # PLOTTING THE DATASET
 # PLOTTING BY REGION
-region = df[['Region', 'Year', 'AvgTemperature']].groupby(['Region', 'Year']).mean()
-plt.figure(figsize=(20,7))
-sns.lineplot(x = 'Year', y = 'AvgTemperature', hue = 'Region', units = 'Region', markers = True, dashes = False, estimator = None, lw = 1, data = region)
-plt.title("Daily Average Temperature by Region")
-plt.xlabel("Date")
-plt.ylabel("Average Temperature")
-plt.show()
+
 
 ![image](https://user-images.githubusercontent.com/93997961/234974857-2328df5d-904b-40e4-93be-698a5c8f659b.png)
 
@@ -91,29 +85,11 @@ df.sort_values(by = ['AvgTemperature'], ascending  = True).head(1)
 
 
 # PLOTTING SOME CITIES
-plt.figure(figsize = (20,7))
-plt.plot(df['Date'][(df['City'] =="Madrid")], df['AvgTemperature'][(df['City'] =="Madrid")], 'y' ,label = 'Madrid')
-plt.plot(df['Date'][(df['City'] =="Moscow")], df['AvgTemperature'][(df['City'] =="Moscow")], 'r' ,label = 'Moscow')
-plt.plot(df['Date'][(df['City'] =="Ottawa")], df['AvgTemperature'][(df['City'] =="Ottawa")], 'b' ,label = 'Ottawa')
-plt.grid(linestyle = '--')
-plt.legend(["Madrid","Moscow","Ottawa"])
-plt.title("Daily Average Temperature in some cities")
-plt.xlabel("Date")
-plt.ylabel("Average Temperature")
-plt.show()
 
 ![image](https://user-images.githubusercontent.com/93997961/234975668-fcd8951f-6c21-4906-a1ec-cfa80d51ec64.png)
 
 # plotting the temperature of every country in a region
-country1=df[["Country","Region","Year","AvgTemperature"]]
-country2=country1[(country1['Region'] == "Africa") ]
-country=country2.drop("Region",axis=1).groupby(['Country', 'Year']).mean()
-plt.figure(figsize=(20,7))
-sns.lineplot(x = 'Year', y = 'AvgTemperature', hue = 'Country', units = 'Country', markers = True, dashes = False, estimator = None, lw = 1, data = country)
-plt.title("Daily Average Temperature in every Country in Africa")
-plt.xlabel("Date")
-plt.ylabel("Average Temperature")
-plt.show()
+
 
 ![image](https://user-images.githubusercontent.com/93997961/234976740-7c61e3dd-4284-4d0b-b363-d90becd4a046.png)
 
