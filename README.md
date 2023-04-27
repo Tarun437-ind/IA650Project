@@ -125,16 +125,33 @@ xgbr=xgb.XGBRegressor(booster="dart",objective="reg:squarederror",n_estimators=1
 xgbr.fit(X_train,y_train)
 xgbrPredic=xgbr.predict(X_test)
 
-## EVALUATING MODEL RESULTS AND ACCURACY BY USING R^2 AND RMSE 
+## EVALUATING MODEL RESULTS AND ACCURACY  
 RMSE
 print("Root Mean Squared Error (RMSE) score XGBoost:"+str(np.sqrt(mean_squared_error(y_test,xgbrPredic))))
 Root Mean Squared Error (RMSE) score XGBoost:3.8601992844359025
 
+## FROM THE ABOVE RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
 R^2: 
 r2 = r2_score(y_test, xgbrPredic)
 print("R-squared score: {:.2f}".format(r2))
 R-squared score: 0.86
-## FROM THE ABOVE RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
+
+# PLOTTING THE RESULTS
+test["prediction"]=xgbrPredic
+df=df.set_index("Date")
+ax=df['AvgTemperature'][(df['City'] ==city["London"])].plot(figsize=(15,5))
+df["prediction"][(df['City'] ==city["London"])].plot(ax=ax,style=".")
+plt.legend(["Real Data","Predictions"])
+ax.set_title("Daily Average Temperature in London")
+plt.xlabel("Date")
+plt.ylabel("Average Temperature")
+plt.show()
+
+![image](https://user-images.githubusercontent.com/93997961/234982504-9065b73e-4459-49e5-9c2f-7fd3a67cddd9.png)
+
+
+
+
 
 
 
