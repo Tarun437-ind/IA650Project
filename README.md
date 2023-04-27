@@ -120,11 +120,26 @@ test=df[split:]
 
 ![image](https://user-images.githubusercontent.com/93997961/234979401-48a3699f-f52f-4f77-bda8-c7adf054b6df.png)
 
-# USING XGBOOST 
+##  USING XGBOOST MODEL
+xgbr=xgb.XGBRegressor(booster="dart",objective="reg:squarederror",n_estimators=151)
+xgbr.fit(X_train,y_train)
+xgbrPredic=xgbr.predict(X_test)
 
-![image](https://user-images.githubusercontent.com/93997961/234979998-a1ea979a-0237-432f-9dfe-f8447d0a441e.png)
+## EVALUATING MODEL RESULTS AND ACCURACY BY USING R^2 AND RMSE 
+RMSE
+print("Root Mean Squared Error (RMSE) score XGBoost:"+str(np.sqrt(mean_squared_error(y_test,xgbrPredic))))
+Root Mean Squared Error (RMSE) score XGBoost:3.8601992844359025
 
-## BY USING 
+R^2: 
+r2 = r2_score(y_test, xgbrPredic)
+print("R-squared score: {:.2f}".format(r2))
+R-squared score: 0.86
+## FROM THE ABOVE RESULTS WE GOT NEARLY 86% ACCURACY FOR THIS MODEL
+
+
+
+
+
 
 
 
