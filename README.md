@@ -1,11 +1,16 @@
-# IA650 Final Project
+### Project Done By Tarun sharma - tasharm@clarkson.edu and Rohit patel - rohpate@clarkson.edu
+
+
 # PREDICTION OF TEMPERATURE AROUND THE GLOBE
-Every continent has the different average temperature based on region and thier location our main aim for this project is to predict the temperature of that region,city and year
+#### INTRODUCTION
+Every continent has the different average temperature based on region and thier location  our main aim for this project is to predict the temperature of that region,city and year based on different models
+
 # DATA COLLECTION
 Every continent has the different average temperature based on region and thier location our main aim for this project is to predict the temperature of that region
 The Dataset is extracted from the data world bank and referred from University of Dayton daily average temperatures for 157 U.S. and 167 international cities. The Data updated on a regular basis and contain data from January 1, 1995 to present.
 Source data for this site are from the National Climatic Data Center. The data is available for research and non-commercial purposes only.
 Reference : https://academic.udayton.edu/kissock/http/Weather/default.htm
+
 # DATA DESCRIPTION AND DIRECTORY
 -> The overall data contains 2.9 millons rows and 8 columns 
 1) REGION : Continent name such as Africa,Asia
@@ -99,6 +104,20 @@ df.sort_values(by = ['AvgTemperature'], ascending  = True).head(1)
 So we have taken United Kingdom as an example
 
 ![image](https://user-images.githubusercontent.com/93997961/234977986-eb01c985-18d5-4517-b8f2-7163b04afa86.png)
+
+## PLOTTING BASIC VISUALIZATION BY USING TABLEAU 
+#### AVG Temperature of each by region
+
+![image](https://user-images.githubusercontent.com/93997961/235270015-fb7e13e1-7d14-4e18-aa67-efa468e60d50.png)
+
+#### AVG Temperature of some major cities from each region
+
+![image](https://user-images.githubusercontent.com/93997961/235270500-b13a700c-2117-422c-b847-88b0dcfa8240.png)
+
+#### AVG Temperature of top 3 region from 2018 to 2020
+
+![image](https://user-images.githubusercontent.com/93997961/235270771-49775369-348e-4b98-8afd-a010c82a907e.png)
+
 
 ### Using Label Encoder (Transform non-numerical Data to numerical)
 le=LabelEncoder()
@@ -200,6 +219,11 @@ print("R-squared score: {:.2f}".format(r2))
 
 R-squared score: 0.69
 
+## LIMITATIONS
+Before Trying the XGBOOST and Gradient Boosting algorithm I got only 3% accuracy for Linear Regression and after understanding the reason behind it I got to know that our model and data set is non-linear model to overcome this I used XGBoost which is a powerful algorithm that can handle complex nonlinear relationships between the features and the target variable.
+
+### CONCLUSION
+After Doing different model evaluation and finding out the accuracy by using different algorithm .XGBoost is a robust and flexible algorithm that is well-suited for temperature prediction tasks, making it a popular choice for machine learning practitioners  
 
 
 
